@@ -1,0 +1,12 @@
+/*
+/*/
+
+!.gitignore
+!.vimrc
+
+!/.mybash/
+
+/.vim/*
+!/.vim/colors/
+!/.vim/include/
+!/.vim/
