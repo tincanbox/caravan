@@ -1,5 +1,6 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  echo "Installing plug.vim ..."
+  !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -7,7 +8,7 @@ endif
 "----------------------------------------------
 "  Plug
 "----------------------------------------------
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/bundle')
 
 "----------------------------------------------
 "  Bundle Load & Settings
@@ -47,13 +48,6 @@ Plug 'tpope/vim-surround'
 "| Finally, let's try out visual mode. Press a capital V (for linewise visual mode)
 "| followed by S<p>. "
 
-"---------------------------------------------- Lua
-Plug 'L9'
-"---------------------------------------------- FuzzyFinder (Find buffers)
-Plug 'FuzzyFinder'
-nnoremap mf :FufFile <cr>
-nnoremap mb :FufBuffer <cr>
-
 "---------------------------------------------- ZenCoding & Emmet
 Plug 'mattn/emmet-vim'
 let g:user_emmet_leader_key='<C-Y>'
@@ -77,7 +71,7 @@ let g:deoplete#enable_at_startup = 1
 Plug 'vim-scripts/slimv.vim'
 
 "---------------------------------------------- Cool status bar.
-Plug 'Lokaltog/vim-powerline'
+Plug 'vim-airline/vim-airline'
 
 "---------------------------------------------- Syntastic [ Syntax checker ]
 ""Bundle 'scrooloose/syntastic'
@@ -92,7 +86,7 @@ let NERDTreeMapChdir='c'
 let NERDTreeMapQuit=''
 
 "---------------------------------------------- Multiple Cursors
-Plug "terryma/vim-multiple-cursors"
+Plug 'terryma/vim-multiple-cursors'
 "| Be careful!
 "| MultipleCursor make Undo/Redo histories bit complicated.
 "|
@@ -124,10 +118,10 @@ endif
 "
 " :Qfreplace
 "
-Plug "thinca/vim-qfreplace"
+Plug 'thinca/vim-qfreplace'
 
 "---------------------------------------------- Coffee Script
-Plug "kchmck/vim-coffee-script"
+Plug 'kchmck/vim-coffee-script'
 
 au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
 autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
