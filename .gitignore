@@ -4,7 +4,7 @@
 !.gitignore
 !.vimrc
 
-!/.mybash/
+!/.mysh/
 
 /.vim/*
 !/.vim/colors/
