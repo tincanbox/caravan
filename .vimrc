@@ -4,7 +4,7 @@
 "| !! You MUST use zsh in /usr/local/bin/zsh !!
 
 
-if !&cp | set cp | endif
+"if !&cp | set cp | endif
 "<shell>
   "set shell=/usr/local/bin/zsh
 "</shell>
