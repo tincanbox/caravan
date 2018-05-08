@@ -127,6 +127,16 @@ if !&cp | set cp | endif
     exe 'source' f
   endfor
 
+  if has("nvim")
+    for f in split(glob('~/.vim/include/cmp/nvim/*.vim'), '\n')
+      exe 'source' f
+    endfor
+  else
+    for f in split(glob('~/.vim/include/cmp/vim/*.vim'), '\n')
+      exe 'source' f
+    endfor
+  endif
+
   filetype on
   filetype indent on
   filetype plugin indent on
