@@ -10,9 +10,9 @@
 "</shell>
 
 "<basis>
-  " Compatible
+  " Compatible Options
   syntax on
-  set nocompatible " Almost no means
+  set nocompatible
   let s:cpo_save=&cpo
   set cpo&vim
   let &cpo=s:cpo_save
@@ -44,7 +44,7 @@
   set maxfuncdepth=1000
   set maxmapdepth=1000
   set switchbuf+=newtab
-  set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+  "set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
   "set virtualedit+=block
   set backspace=2 " Set BS action mode
   set nowrap
@@ -125,6 +125,7 @@
     exe 'source' f
   endfor
 
+  " Import compatibility config.
   if has("nvim")
     for f in split(glob('~/.vim/include/cmp/nvim/*.vim'), '\n')
       exe 'source' f
@@ -159,25 +160,31 @@
   inoremap <C-o> <ESC>o
   inoremap <C-u> <ESC>ui
   " Delete
-  inoremap <silent> <C-d> <Del>
-  inoremap <silent> <C-d>e <Esc>lc^
-  inoremap <silent> <C-d>0 <Esc>lc$
+  inoremap <C-d>h <Esc>lc^
+  inoremap <C-d>l <Esc>lc$
+  " <TAB>: completion.
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "</key_insert>
 
 "<key_view>
+  " Re-yank after paste.
+  vnoremap p pgvy
+  " Faster indenting
   vnoremap > >gv
   vnoremap < <gv
-  vnoremap <silent> <S-p> "0p<CR>
+  " Paste from clipboard
+  vnoremap <S-p> "*p
+  " Copy to clipboard
+  vnoremap <C-c> "*y
   " Search by yanked buffer.
   vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
-  vnoremap <C-c> "*y
 "</key_view>
 
 "<key_console>
-  "cnoremap <> <Down>
-  "cnoremap <C-p> <Up>
   cnoremap <C-b> <Left>
   cnoremap <C-f> <Right>
+  " Auto escaping some special chars.
   cnoremap <expr> / (getcmdtype() == '/') ? '\/' : '/'
   cnoremap <expr> . (getcmdtype() == '/') ? '\.' : '.'
 "</key_console>
@@ -186,18 +193,15 @@
   " Insert current Datetime
   nnoremap <F2> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<ESC>
   " Toggle line number style [abs:rlt]
-  nnoremap <silent> <F3> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
-  " Quickly change to insert mode
-  nnoremap <Space> i
-  " iOS's Cmd+T like action
+  nnoremap <F3> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
+  " Quickly change to insert-after mode
+  nnoremap <Space> a
+  " Opens new tab like Cmd+T.
   nnoremap T :tabnew<CR>
   " Window change
   nnoremap <Tab> <C-w>w
   nnoremap <S-Tab> <C-w>W
-  " <TAB>: completion.
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-  " Window vertical size
+  " Window resize
   nnoremap <S-Up> <C-w>+
   nnoremap <S-Down> <C-w>-
   nnoremap <S-Left> <C-w>>
@@ -223,8 +227,9 @@
   "" Im tired always tiping "tabnew | read !" and "q!"
   " Example:
   " :EO git diff develop new-feature
+  " Abobe command shows git diff result in QF window.
   command -nargs=* EO call s:ExecuteCommandAndRedirectToQuickfix(<f-args>)
-  " Bye. I can hit bit faster than "qa"
+  " Bye. Maybe you can hit "qa" 1.5x faster than this. Just I want this.
   command -nargs=0 Bye :qa
   " Delete a current file
   command -complete=file -nargs=0 Remove :echo 'Remove: ' . '<f-args>'.' '.(delete(expand('%')) == 0 ? 'Succeeded :)' : 'Failure X(' )
