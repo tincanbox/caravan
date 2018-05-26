@@ -1,5 +1,9 @@
 # Add...
-# source ~/.mysh/bootstrap.sh in your *rc file.
+# source ~/.mysh/bootstrap.sh
+# in your *rc file.
+
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH="$HOME/.mysh/bin":$PATH
 
 mysh_bootstrap(){
 
@@ -22,5 +26,3 @@ mysh_bootstrap(){
 mysh_bootstrap;
 
 export XDG_CONFIG_HOME=~/.config
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH="$HOME/.mysh/bin":$PATH
