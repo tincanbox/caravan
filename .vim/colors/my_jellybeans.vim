@@ -292,9 +292,9 @@ if version >= 700
   call s:X("CursorColumn","","1c1c1c","","","")
   call s:X("MatchParen","ffffff","80a090","bold","","")
 
-  call s:X("TabLine","000000","b0b8c0","italic","","Black")
-  call s:X("TabLineFill","9098a0","","","","")
-  call s:X("TabLineSel","000000","f0f0f0","italic,bold","","")
+  call s:X("TabLine","000000","b0b8c0","","","Black")
+  call s:X("TabLineFill","ff0000","","","","")
+  call s:X("TabLineSel","","","","","")
 
   " Auto-completion
   call s:X("Pmenu","ffffff","555555","","","")

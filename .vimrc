@@ -74,8 +74,6 @@
 "</theme>
 
 "<font>
-  set anti
-  set antialias
   set ambiwidth=double
 
   " Special chars visibility

@@ -1,12 +1,14 @@
-"----------------------------------------------
-"  Bundle & NeoBundle
-"----------------------------------------------
-set rtp+=$HOME/.vim/bundle/Vundle.vim/
-call vundle#rc('$HOME/.vim/bundle/')
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+if empty(glob('~/.vim/autoload/plug.vim'))
+  echo "Installing plug.vim ..."
+  !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
+"----------------------------------------------
+"  Plug
+"----------------------------------------------
+call plug#begin('~/.vim/plugged')
 
 "----------------------------------------------
 "  Bundle Load & Settings
@@ -16,15 +18,15 @@ Bundle 'gmarik/vundle'
 "
 
 "---------------------------------------------- Visible ANSI colorings.
-Bundle 'vim-scripts/AnsiEsc.vim'
+Plug 'vim-scripts/AnsiEsc.vim'
 "---------------------------------------------- Fugtive (Enable Git commands)
-Bundle 'tpope/vim-fugitive'
-Bundle 'gregsexton/gitv'
+Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv'
 "---------------------------------------------- Ctrl-P (Open file buffers like as SublimeText)
-Bundle 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 let g:ctrlp_map = '<C-p>'
 "---------------------------------------------- Cool brackets manipulator.
-Bundle 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 "| Press cs"' (that's c, s, double quote, single quote) inside
 "| "Hello world!"
 "| to change it to
@@ -46,37 +48,31 @@ Bundle 'tpope/vim-surround'
 "| Finally, let's try out visual mode. Press a capital V (for linewise visual mode)
 "| followed by S<p>. "
 
-"---------------------------------------------- Lua
-Bundle 'L9'
-"---------------------------------------------- FuzzyFinder (Find buffers)
-Bundle 'FuzzyFinder'
-nnoremap mf :FufFile <cr>
-nnoremap mb :FufBuffer <cr>
-
 "---------------------------------------------- ZenCoding & Emmet
-Bundle 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 let g:user_emmet_leader_key='<C-Y>'
 "| Occured strange key confliction...I have to find out reason.
 "| Bundle 'rstacruz/sparkup'
 "| let g:sparkupExecuteMapping = '<c-s>o'
 "---------------------------------------------- Thank you, Shougo.
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/unite.vim'
+Plug 'Shougo/vimproc'
+Plug 'Shougo/vimshell'
+Plug 'Shougo/unite.vim'
 "---------------------------
 if has('nvim')
-  Bundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Bundle 'Shougo/deoplete.nvim'
-  Bundle 'roxma/nvim-yarp'
-  Bundle 'roxma/vim-hug-neovim-rpc'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#num_processes = 1
 "---------------------------------------------- Superior Lisp Interaction Mode for Vim
-Bundle 'vim-scripts/slimv.vim'
+Plug 'vim-scripts/slimv.vim'
 
 "---------------------------------------------- Cool status bar.
-Bundle 'Lokaltog/vim-powerline'
+Plug 'vim-airline/vim-airline'
 
 "---------------------------------------------- Syntastic [ Syntax checker ]
 ""Bundle 'scrooloose/syntastic'
@@ -85,13 +81,13 @@ Bundle 'Lokaltog/vim-powerline'
 ""let g:syntastic_php_checkers=['php']
 
 "---------------------------------------------- NERD Tree [ A BEST file explorer ]
-Bundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " Superior explorer.
 let NERDTreeMapChdir='c'
 let NERDTreeMapQuit=''
 
 "---------------------------------------------- Multiple Cursors
-Bundle "terryma/vim-multiple-cursors"
+Plug 'terryma/vim-multiple-cursors'
 "| Be careful!
 "| MultipleCursor make Undo/Redo histories bit complicated.
 "|
@@ -123,13 +119,15 @@ endif
 "
 " :Qfreplace
 "
-Bundle "thinca/vim-qfreplace"
+Plug 'thinca/vim-qfreplace'
 
 "---------------------------------------------- Coffee Script
-Bundle "kchmck/vim-coffee-script"
+Plug 'kchmck/vim-coffee-script'
 
 au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
 autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
 autocmd BufWritePost *.coffee silent make!
 "autocmd QuickFixCmdPost * nested cwindow | redraw!
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
+
+call plug#end()

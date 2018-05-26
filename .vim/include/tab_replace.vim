@@ -19,7 +19,8 @@ if exists("+showtabline")
     let actc = '%1*'
     let c_show_tabnum_clear = 0
 
-    let s .= '%' . i . 'T' " Start TabLabel
+    let tab_open = '%' . i . 'T' " Start TabLabel
+    let s .= tab_open
 
     if c_show_tabnum_clear
       let s .= (i == t ? '%1*' : '%2*')
@@ -35,8 +36,8 @@ if exists("+showtabline")
     let s .= i
     let l += len(string(i))
 
-    let s .= ': '
-    let l += 2
+    let s .= ':'
+    let l += 1
 
     let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
 
@@ -56,43 +57,43 @@ if exists("+showtabline")
       else
         let bufname = bufname(b)
 
-        if getbufvar( b, "&modifiable" )
-          let fn = ''
-          if filereadable(bufname)
-            " Merge modifiable file names later.
-            let fn = fnamemodify(bufname, ':p:t')
-          else
-            if bufname == ''
-              let fn = '[No Name]'
-            else
-              let fn = bufname[0:24]
-            endif
-          endif
-
-          if getbufvar( b, "&modified" )
-            let fn = fn.'*'
-          endif
-
-          let l += len(fn)
-
-          if is_active && getbufvar(b, "&readonly") == 1
-            let fn = '%#BuffNameReadOnly#'.fn
-          endif
-
-          if is_active
-            let fn = acto.fn.actc
-          endif
-
-          if files == ''
-            let files = fn
-          else
-            let files = files.' | '.fn
-            let l += 3
-          endif
+        if filereadable(bufname)
+          " Merge modifiable file names later.
+          let fn = fnamemodify(bufname, ':p:t')
         else
-          let col = '[!'.substitute(bufname, "\[^a-zA-Z0-9\]", "", "")[0:2].']'
+          if bufname == ''
+            let fn = '[No Name]'
+          else
+            let fn = bufname[0:24]
+          endif
         endif
 
+        if !getbufvar( b, "&modifiable" )
+          let fn = '[!'.substitute(bufname, "\[^a-zA-Z0-9\]", "", "")[0:2].']'
+        endif
+
+        if getbufvar( b, "&modified" )
+          let fn = fn.'*'
+        endif
+
+        let l += len(fn)
+
+        if is_active && getbufvar(b, "&readonly") == 1
+          let fn = '%#BuffNameReadOnly#'.fn
+        endif
+
+        if is_active
+          let fn = tab_open.acto.fn.actc.'%T'
+        else
+          let fn = tab_open.fn.'%T'
+        endif
+
+        if files == ''
+          let files = fn
+        else
+          let files = files.' | '.fn
+          let l += 3
+        endif
       endif
 
       " check and ++ tab's &modified count
