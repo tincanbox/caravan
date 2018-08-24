@@ -62,9 +62,13 @@ Plug 'Shougo/unite.vim'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  if v:version > 800 && has('python3')
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  else
+    echo 'myvim: This vim does not support deoplete.nvim plugin.'
+  endif
 endif
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#num_processes = 1
