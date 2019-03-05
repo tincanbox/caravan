@@ -1,0 +1,36 @@
+user_home_path="/home/""$USER/"
+caravan_base_path="$user_home_path""caravan/"
+
+echo "Linking components..."
+for linking_component in ".mysh" ".vim" ".vimrc"
+do
+  linking_path="$caravan_base_path""$linking_component"
+  linking_dest_path="$user_home_path""$linking_component"
+  if [ ! -e $linking_dest_path ]
+  then
+    $(ln -s "$linking_path" "$linking_dest_path")
+    echo "$linking_component"" Linked"
+  fi
+done
+
+echo "Linking nvim dot-config..."
+
+# Checking .config dir
+if [ ! -d "$user_home_path"".config" ]
+then
+  mkdir "$user_home_path"".config"
+fi
+
+if [ -e "$user_home_path"".config/nvim" ]
+then
+  # Moving prev file
+  if [ -e "$user_home_path"".config/nvim/init.vim" ]
+  then
+    echo "Moved prev init.vim file"
+    mv "$user_home_path"".config/nvim/init.vim" "$user_home_path"".config/nvim/init.vim.bk""$(date +%s)"
+  fi
+else
+  mkdir -p "$user_home_path"".config/nvim"
+fi
+
+$(ln -s "$caravan_base_path"".vimrc" "$user_home_path"".config/nvim/init.vim")
