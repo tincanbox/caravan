@@ -18,19 +18,19 @@ echo "Linking nvim dot-config..."
 # Checking .config dir
 if [ ! -d "$user_home_path"".config" ]
 then
+  echo "making .config dir"
   mkdir "$user_home_path"".config"
 fi
 
 if [ -e "$user_home_path"".config/nvim" ]
 then
-  # Moving prev file
-  if [ -e "$user_home_path"".config/nvim/init.vim" ]
-  then
-    echo "Moved prev init.vim file"
-    mv "$user_home_path"".config/nvim/init.vim" "$user_home_path"".config/nvim/init.vim.bk""$(date +%s)"
-  fi
+
+  echo "backing up .config/nvim dir"
+  mv "$user_home_path"".config/nvim" "$user_home_path"".config/nvim.bk""$(date +%s)"
+
 else
   mkdir -p "$user_home_path"".config/nvim"
 fi
 
+$(ln -s "$caravan_base_path"".vim" "$user_home_path"".config/nvim")
 $(ln -s "$caravan_base_path"".vimrc" "$user_home_path"".config/nvim/init.vim")
