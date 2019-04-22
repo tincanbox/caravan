@@ -1,7 +1,6 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
+if empty(glob(GetUserHomePath().'/.vim/autoload/plug.vim'))
   echo "Installing plug.vim ..."
-  !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  exe "!curl -fLo ".GetUserHomePath()."/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -59,19 +58,20 @@ Plug 'Shougo/vimproc'
 Plug 'Shougo/vimshell'
 Plug 'Shougo/unite.vim'
 "---------------------------
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  if v:version > 800 && has('python3')
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  else
-    echo 'myvim: This vim does not support deoplete.nvim plugin.'
-  endif
-endif
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#num_processes = 1
+Plug 'valloric/youcompleteme'
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  if v:version > 800 && has('python3')
+"    Plug 'Shougo/deoplete.nvim'
+"    Plug 'roxma/nvim-yarp'
+"    Plug 'roxma/vim-hug-neovim-rpc'
+"  else
+"    echo 'myvim: This vim does not support deoplete.nvim plugin.'
+"  endif
+"endif
+"let g:deoplete#enable_at_startup = 1
+"let g:deoplete#num_processes = 1
 "---------------------------------------------- Superior Lisp Interaction Mode for Vim
 Plug 'vim-scripts/slimv.vim'
 

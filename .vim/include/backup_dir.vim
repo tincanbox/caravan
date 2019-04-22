@@ -4,7 +4,7 @@
 
 " Backup directory
 set backup
-set backupdir=~/.vimbackup/
+set backupdir="~/.vimbackup/"
 let &backupskip="/private/tmp/*," . &backupskip
 
 " Swap directory
@@ -26,18 +26,17 @@ au BufWritePre * call BackupAppendSuffix()
 "
 function! BackupAppendSuffix()
   " Trying...
-  let defaultroot = '~/.vimbackup/'
   let date = strftime("%Y%m%d")
   let time = strftime("%H%M%S")
   let datetime = date."-".time
   let cur_cwd = getcwd()
   let pardir = substitute(cur_cwd, '^/', "", "g")
-  let curbackupdir = defaultroot.date."/".substitute(cur_cwd, '^/', "", "g")
+  let curbackupdir = GetUserHomePath()."/.vimbackup/".date."/".substitute(cur_cwd, '^/', "", "g")
 
   " Check existance of `Today's` directory.
   if !isdirectory(expand(curbackupdir))
     echo 'Creating new backupdir -> '.curbackupdir
-    exe '!mkdir -p ' fnameescape(curbackupdir)
+    call MakeDirRecur(fnameescape(curbackupdir))
   endif
 
   " Override backupdir

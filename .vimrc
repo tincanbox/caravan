@@ -9,6 +9,18 @@
   "set shell=/usr/local/bin/zsh
 "</shell>
 
+"<helper>"
+  function! GetUserHomePath()
+    return fnamemodify(expand("$MYVIMRC"), ":p:h")
+  endfunction
+"</helper>"
+
+"<os_comp>"
+  if has('win32') || has('win64')
+    set runtimepath^=~/.vim/
+  endif
+"</os_comp>"
+
 "<basis>
   " Compatible Options
   syntax on
@@ -121,17 +133,17 @@
   filetype off
   filetype plugin indent off
 
-  for f in split(glob('~/.vim/include/*.vim'), '\n')
+  for f in split(glob(GetUserHomePath().'/.vim/include/*.vim'), '\n')
     exe 'source' f
   endfor
 
   " Import compatibility config.
   if has("nvim")
-    for f in split(glob('~/.vim/include/cmp/nvim/*.vim'), '\n')
+    for f in split(glob(GetUserHomePath().'/.vim/include/cmp/nvim/*.vim'), '\n')
       exe 'source' f
     endfor
   else
-    for f in split(glob('~/.vim/include/cmp/vim/*.vim'), '\n')
+    for f in split(glob(GetUserHomePath().'/.vim/include/cmp/vim/*.vim'), '\n')
       exe 'source' f
     endfor
   endif
@@ -257,9 +269,22 @@
   " Short hand `tabnew | read ! .....`
   " Execute a shell command and redirect outputs to QuickFix
   "
-  function s:ExecuteCommandAndRedirectToQuickfix(...)
+  function! ExecuteCommandAndRedirectToQuickfix(...)
     let exe_str = join(a:000)
     cexpr system(exe_str) | copen
+  endfunction
+
+  function s:MakeDirRecur(p)
+    let dir = expand(a:p)
+
+    if dir =~ '://'
+      return
+    endif
+
+    if !isdirectory(dir)
+      call mkdir(dir, 'p')
+      echo 'Created non-existing directory: '.dir
+    endif
   endfunction
 "</function>
 
