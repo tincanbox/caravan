@@ -1,3 +1,4 @@
+# Linux only
 user_home_path="/home/""$USER/"
 caravan_base_path="$user_home_path""caravan/"
 

@@ -274,7 +274,7 @@
     cexpr system(exe_str) | copen
   endfunction
 
-  function s:MakeDirRecur(p)
+  function! MakeDirRecur(p)
     let dir = expand(a:p)
 
     if dir =~ '://'
