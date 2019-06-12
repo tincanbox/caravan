@@ -1,0 +1,24 @@
+# init
+sudo apt update & sudo apt -y upgrade
+sudo apt -yV install net-tools
+sudo apt install -y build-essential zlib1g-dev libssl-dev curl
+
+# if VM
+# sudo apt-get install virtualbox-guest-utils
+# sudo apt-get install virtualbox-guest-dkms
+# cd ~
+# wget link http://download.virtualbox.org/virtualbox/6.0.8/VBoxGuestAdditions_6.0.8.iso
+# sudo mkdir /media/VBoxGuestAdditionsISO
+# sudo mount -o loop ~/VBoxGuestAdditions.iso /media/GuestAdditionsISO
+# cd /media/GuestAdditionsISO
+# sh ./VBoxLinuxAdditions.run
+
+# tools
+sudo apt install -y git nodejs npm python python-dev
+
+# NeoVim
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
+sudo apt-get install neovim python3-dev python3-pip
+pip3 install -U pip3
