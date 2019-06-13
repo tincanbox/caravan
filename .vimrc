@@ -11,7 +11,7 @@
 
 "<helper>"
   function! GetUserHomePath()
-    return fnamemodify(expand("$MYVIMRC"), ":p:h")
+    return fnamemodify(expand("$HOME"), ":p:h")
   endfunction
 "</helper>"
 
