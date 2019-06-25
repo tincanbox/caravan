@@ -1,5 +1,9 @@
 /*
 /*/
+ *
+!.gitignore
+
+log/*
 
 !.gitignore
 !.vimrc
