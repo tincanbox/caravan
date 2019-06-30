@@ -6,7 +6,7 @@ then
   __caravan::log "Installing Prezto..."
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 else
-  if [ -e "$HOME"/.zprezto/init.zsh]
+  if [ -e "$HOME"/.zprezto/init.zsh ]
   then
     source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
   else
