@@ -1,17 +1,17 @@
+# Ignore all.
 /*
 /*/
- *
-!.gitignore
-
 log/*
 
 !.gitignore
+!.gitkeep
+
 !.vimrc
 !init
 
-!/.mysh/
+# Includes
+!/burden/
+!/core/
 
-/.vim/*
-!/.vim/colors/
-!/.vim/include/
-!/.vim/
+# Excludes
+/burden/.vim/plugged/

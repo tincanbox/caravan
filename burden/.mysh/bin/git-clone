@@ -1,0 +1,26 @@
+
+git_clone()
+{
+
+  local REPO_NAME
+  local DEST
+
+  REPO_NAME="$1"
+  DEST="${2}"
+
+  request(){
+    local repo
+    local buf
+
+    repo="$1"
+
+    if $("git clone https://github.com/""$repo"".git" 2>/dev/null); then
+      return 0
+    else
+      return 1
+    fi
+  }
+
+  return $(request $REPO_NAME $DEST)
+}
+git_clone ${@:1}
