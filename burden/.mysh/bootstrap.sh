@@ -26,6 +26,8 @@ mysh_bootstrap(){
   done
 
   source ~/.mysh/alias.sh
+
+  vim +PlugInstall +qall > /dev/null
 }
 mysh_bootstrap
 

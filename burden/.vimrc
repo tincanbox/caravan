@@ -155,7 +155,7 @@
 
 "<autocmd>
   " Open NERDTree
-  autocmd VimEnter * NERDTree
+  "autocmd VimEnter * NERDTree
   " Auto change dir.
   autocmd BufEnter * silent! lcd %:p:h
   " Automatically open QuickFix window when :vimgrep ed

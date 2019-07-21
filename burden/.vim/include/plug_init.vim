@@ -80,9 +80,9 @@ Plug 'vim-airline/vim-airline'
 
 "---------------------------------------------- Syntastic [ Syntax checker ]
 ""Bundle 'scrooloose/syntastic'
-""let g:syntastic_enable_signs=1
-""let g:syntastic_auto_loc_list=2
-""let g:syntastic_php_checkers=['php']
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+let g:syntastic_php_checkers=['php', 'javascript']
 
 "---------------------------------------------- NERD Tree [ A BEST file explorer ]
 Plug 'scrooloose/nerdtree'
