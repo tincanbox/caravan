@@ -8,7 +8,7 @@ echo '
   \___/\_/|_/   |_/\_/|_/ \/  \_/|_/  |  |_/
 '
 
-_CARAVAN_HOME="$HOME""/caravan"
+_CARAVAN_HOME=$(dirname $(readlink -f "$0"))
 _CARAVAN_DIR_BURDEN="$_CARAVAN_HOME""/burden"
 _CARAVAN_DIR_COMMAND=$_CARAVAN_HOME"/core/command"
 _CARAVAN_COMMAND_PREFIX="__caravan::"
@@ -20,7 +20,7 @@ echo "Approaching members..."
 for file in $(find "$_CARAVAN_HOME"/core/member/*.sh -maxdepth 1 -type f); do
   f="${file##*/}"
   f="${f%*.sh}"
-  __caravan::log "$f"
+  #__caravan::log "$f"
   source "$file"
 done
 

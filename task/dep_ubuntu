@@ -1,0 +1,25 @@
+# Maybe you need some libraries to run caravan.
+# init
+sudo apt update & sudo apt -y upgrade
+sudo apt -yV install net-tools
+sudo apt install -y build-essential zlib1g-dev libssl-dev curl cmake libffi-dev
+
+# tools
+sudo apt install -y git nodejs npm python python-dev
+#sudo npm install -g npm
+#hash -d npm
+#sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+
+# chrome
+sudo apt install -y chromium-browser chromium-chromedriver
+
+# NeoVim
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
+sudo apt-get install neovim python3-dev python3-pip
+pip3 install -U pip3
+
+#change sh
+sudo apt-get install zsh
+chsh -s $(which zsh)

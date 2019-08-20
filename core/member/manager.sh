@@ -7,4 +7,18 @@ __caravan::member::manager::include_all()
   done
 }
 
+__caravan::member::manager::include()
+{
+  fp="$_CARAVAN_HOME""/core/""$1"
 
+  if [ ! -e $fp ]
+  then
+    return 1
+    exit
+  fi
+
+  source "$fp" >&2
+
+  echo "true"
+  return 0
+}

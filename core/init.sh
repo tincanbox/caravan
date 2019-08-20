@@ -2,7 +2,7 @@ __caravan()
 {
   arg="$1"
 
-  __caravan::member::manager::include_all "command"
+  #__caravan::member::manager::include_all "command"
 
   case "$arg" in
     -* | --*)
@@ -13,29 +13,36 @@ __caravan()
       shift
 
       #"$_CARAVAN_DIR_COMMAND""/""$arg"".sh" $argv[@]
-      __caravan::command::test
-      $("__caravan::command::""$arg" $argv[@] )
+      __caravan::member::manager::include "command/""$arg"".sh"
+
+      if [ $? -eq 0 ]
+      then
+        "__caravan::command::"${arg} $argv[@]
+      else
+        __caravan::log "Failed to load command execution file."
+        exit 1
+      fi
 
       ;;
 
     *::*)
-      echo "Contacting members directly is not supported in this state."
+      __caravan::log "Contacting members directly is not supported in this state."
       ;;
 
     "")
-      echo "Needs a command..."
+      __caravan::log "Needs a command..."
       ;;
 
     *)
-      echo "Unsupported command was given: ""$arg"
+      __caravan::log "Unsupported command: ""$arg"
       ;;
   esac
 
   return $status
-} 2> "$_CARAVAN_HOME"/log/err.log
+}
 
 
-__caravan::watch_error ()
+__caravan::watch ()
 {
   __caravan::log $_CARAVAN_ERROR
 }

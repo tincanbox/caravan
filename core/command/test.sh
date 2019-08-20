@@ -1,4 +1,4 @@
 __caravan::command::test()
 {
-  echo "test"
+  echo "testing"
 }
