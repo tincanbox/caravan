@@ -1,0 +1,29 @@
+#!/bin/bash
+
+echo '
+   ___          .             *             
+  / (_)     *            ~*            .    
+ |      __,   ,_  . __,        __,  *_  _   
+ |     /  |  /  |  /  |  |  |_/  |  / |/ |  
+  \___/\_/|_/   |_/\_/|_/ \/  \_/|_/  |  |_/
+'
+
+_CARAVAN_HOME="$HOME""/caravan"
+_CARAVAN_DIR_BURDEN="$_CARAVAN_HOME""/burden"
+_CARAVAN_DIR_COMMAND=$_CARAVAN_HOME"/core/command"
+_CARAVAN_COMMAND_PREFIX="__caravan::"
+
+echo "Using shell = ""$SHELL"
+source "$_CARAVAN_HOME""/core/init.sh"
+
+echo "Approaching members..."
+for file in $(find "$_CARAVAN_HOME"/core/member/*.sh -maxdepth 1 -type f); do
+  f="${file##*/}"
+  f="${f%*.sh}"
+  __caravan::log "$f"
+  source "$file"
+done
+
+trap __caravan::watch ERR
+
+__caravan $@

@@ -9,7 +9,7 @@ log/*
 !.gitignore
 !.gitkeep
 !.vimrc
-!init
+!caravan
 
 # Includes
 !/burden/
