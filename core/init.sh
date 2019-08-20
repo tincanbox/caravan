@@ -19,6 +19,7 @@ __caravan()
       ;;
 
     *::*)
+      echo "Contacting members directly is not supported in this state."
       ;;
 
     "")
@@ -26,6 +27,7 @@ __caravan()
       ;;
 
     *)
+      echo "Unsupported command was given: ""$arg"
       ;;
   esac
 

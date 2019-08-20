@@ -39,4 +39,3 @@ __caravan::command::init()
   $(cat "$_CARAVAN_DIR_BURDEN""/.vimrc" > "$user_home_path"".config/nvim/init.vim")
 
 }
-

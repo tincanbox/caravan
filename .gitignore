@@ -1,17 +1,15 @@
 # Ignore all.
 /*
 /*/
-log/*
 .log
 .swp
 .DS_Store
 
+# Includes
 !.gitignore
 !.gitkeep
 !.vimrc
 !caravan
-
-# Includes
 !/burden/
 !/core/
 !/task/
