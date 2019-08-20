@@ -1,0 +1,10 @@
+# Upgrade your old pip.
+pip install --upgrade pip
+
+# Launch vim silently and install plugins
+if [ ! -d "$HOME"/.vim/plugged ]
+then
+  vim +PlugInstall +qall > /dev/null
+  # Make vim plugin "youcompleteme" dictionary.
+  python "$HOME"/.vim/plugged/youcompleteme/install.py
+fi

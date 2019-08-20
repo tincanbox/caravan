@@ -149,13 +149,13 @@
   endif
 
   filetype on
-  filetype indent on
-  filetype plugin indent on
+  "filetype indent on
+  "filetype plugin indent on
 "</include>
 
 "<autocmd>
   " Open NERDTree
-  "autocmd VimEnter * NERDTree
+  "autocmd VimEnter * if &filetype !=# 'directory' | NERDTree | endif
   " Auto change dir.
   autocmd BufEnter * silent! lcd %:p:h
   " Automatically open QuickFix window when :vimgrep ed

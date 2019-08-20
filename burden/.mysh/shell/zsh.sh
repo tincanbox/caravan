@@ -1,4 +1,3 @@
-#!/bin/zsh
 echo "Loading zsh configuration"
 
 if [ ! -e "$HOME"/.zprezto ]

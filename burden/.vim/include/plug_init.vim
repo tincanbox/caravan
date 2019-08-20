@@ -78,11 +78,15 @@ Plug 'vim-scripts/slimv.vim'
 "---------------------------------------------- Cool status bar.
 Plug 'vim-airline/vim-airline'
 
-"---------------------------------------------- Syntastic [ Syntax checker ]
+"---------------------------------------------- Syntax
+Plug 'w0rp/ale'
+let g:ale_fix_on_save = 1
+"Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
 ""Bundle 'scrooloose/syntastic'
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-let g:syntastic_php_checkers=['php', 'javascript']
+"let g:syntastic_enable_signs=1
+"let g:syntastic_auto_loc_list=2
+"let g:syntastic_php_checkers=['php', 'javascript']
+
 
 "---------------------------------------------- NERD Tree [ A BEST file explorer ]
 Plug 'scrooloose/nerdtree'
@@ -132,6 +136,6 @@ au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
 autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
 autocmd BufWritePost *.coffee silent make!
 "autocmd QuickFixCmdPost * nested cwindow | redraw!
-nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
+"nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
 call plug#end()

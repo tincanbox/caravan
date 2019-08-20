@@ -2,16 +2,20 @@
 /*
 /*/
 log/*
+.log
+.swp
+.DS_Store
 
 !.gitignore
 !.gitkeep
-
 !.vimrc
 !init
 
 # Includes
 !/burden/
 !/core/
+!/task/
 
 # Excludes
 /burden/.vim/plugged/
+/burden/.vim/log/
