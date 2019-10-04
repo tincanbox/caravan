@@ -1,22 +1,38 @@
 {
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
   "env": {
-    "browser": true,
-    "commonjs": true,
+    "env": { "browser": true, "node": true, "es6": true },
     "es6": true
   },
-  "extends": "eslint:recommended",
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "parserOptions": {
-    "ecmaVersion": 2018
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+
   },
   "rules": {
   },
   "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+
     "process": true,
     "__dirname": true,
-    "FM": true
+    "define": true,
+    "require": true,
+    "jQuery": true,
+    "FM": true,
+    "$": true,
+    "_": true
   }
 }

@@ -15,6 +15,7 @@ fi
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH="$HOME/.mysh/bin":$PATH
+export VISUAL=vim
 
 mysh_bootstrap(){
 
