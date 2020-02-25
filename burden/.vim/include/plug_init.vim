@@ -81,11 +81,10 @@ Plug 'vim-airline/vim-airline'
 "---------------------------------------------- Syntax
 Plug 'w0rp/ale'
 let g:ale_fix_on_save = 1
-"Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
-""Bundle 'scrooloose/syntastic'
-"let g:syntastic_enable_signs=1
-"let g:syntastic_auto_loc_list=2
-"let g:syntastic_php_checkers=['php', 'javascript']
+
+Plug 'pangloss/vim-javascript' , { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
+Plug 'posva/vim-vue'
+Plug 'HerringtonDarkholme/yats.vim'
 
 
 "---------------------------------------------- NERD Tree [ A BEST file explorer ]
