@@ -49,5 +49,5 @@ __caravan::watch ()
 
 __caravan::log ()
 {
-  echo "$1" > /dev/tty
+  echo "$1"
 }
