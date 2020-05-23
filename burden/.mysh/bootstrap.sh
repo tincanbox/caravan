@@ -17,7 +17,6 @@ else
   current_shell=sh
 fi
 
-current_shell=`basename $0`
 echo "Using Shell: ""$current_shell"
 
 if [ -f "$HOME/.mysh/shell/$current_shell.sh" ]; then
