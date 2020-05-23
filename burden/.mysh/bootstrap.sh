@@ -3,6 +3,20 @@
 # in your *rc file.
 #
 
+if test -n "$ZSH_VERSION"; then
+  current_shell=zsh
+elif test -n "$BASH_VERSION"; then
+  current_shell=bash
+elif test -n "$KSH_VERSION"; then
+  current_shell=ksh
+elif test -n "$FCEDIT"; then
+  current_shell=ksh
+elif test -n "$PS3"; then
+  current_shell=unknown
+else
+  current_shell=sh
+fi
+
 current_shell=`basename $0`
 echo "Using Shell: ""$current_shell"
 
