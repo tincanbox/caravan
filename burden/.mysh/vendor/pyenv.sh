@@ -1,5 +1,3 @@
-echo "Loading pyenv.sh"
-
 # If nvim fails to find python's host,
 # Check your execution path and pip package version are compatible with your python.
 # Sometimes, pip cache and installation will be corrupted
@@ -20,6 +18,7 @@ echo "Loading pyenv.sh"
 
 
 # 2020-05-27 deprecated pyenv
+#echo "Loading pyenv.sh"
 #export PYENV_ROOT="$HOME/.pyenv"
 #export PATH="$PYENV_ROOT/bin:$PATH"
 #export PATH="$PYENV_ROOT/shims:$PATH"
