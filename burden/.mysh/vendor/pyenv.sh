@@ -19,24 +19,24 @@ echo "Loading pyenv.sh"
 # eval "$(pyenv virtualenv-init -)"
 
 
+# 2020-05-27 deprecated pyenv
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#export PATH="$PYENV_ROOT/shims:$PATH"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PATH="$PYENV_ROOT/shims:$PATH"
+#if [ -e "$HOME"/.pyenv ]; then
+  #echo "pyenv is already installed."
+#else
+  #$(curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash)
+  #$("$HOME"/.mysh/run/neovim_setup.sh)
+#fi
 
-if [ -e "$HOME"/.pyenv ]; then
-  echo "pyenv is already installed."
-else
-  $(curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash)
-  $("$HOME"/.mysh/run/neovim_setup.sh)
-fi
+#if [ -d "$(pyenv root)""/plugins/pyenv-virtualenv" ]; then
+  #echo "pyenv/plugin/virtualenv directory is already there."
+#else
+  #git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+#fi
 
-if [ -d "$(pyenv root)""/plugins/pyenv-virtualenv" ]; then
-  echo "pyenv/plugin/virtualenv directory is already there."
-else
-  git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-fi
-
-echo "Initializing pyenv"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#echo "Initializing pyenv"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
