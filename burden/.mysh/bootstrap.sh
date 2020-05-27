@@ -41,7 +41,8 @@ mysh_bootstrap(){
 
   source ~/.mysh/alias.sh
 
-  vim +PlugInstall +qall > /dev/null
+  echo "Installing VIM plugins..."
+  eval "vim +PlugInstall +qall"
 }
 mysh_bootstrap
 
