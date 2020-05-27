@@ -38,4 +38,11 @@ __caravan::command::init()
   $(ln -s "$_CARAVAN_DIR_BURDEN""/.vim" "$user_home_path"".config/nvim")
   $(cat "$_CARAVAN_DIR_BURDEN""/.vimrc" > "$user_home_path"".config/nvim/init.vim")
 
+  echo "Installing VIM plugins..."
+  eval "vim +PlugUpdate +qall"
+
+  # vim::YCM
+  cd ~/.vim/plugged/youcompleteme
+  python3 install.py --all
+  cd ~
 }
