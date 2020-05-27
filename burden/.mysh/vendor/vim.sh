@@ -5,3 +5,7 @@ if type "nvim" 2>&1 1>/dev/null; then
   export NVIM_PYTHON_LOG_FILE="$HOME/.vim/log/log"
   export NVIM_PYTHON_LOG_LEVEL=DEBUG
 fi
+
+# YCM
+cd ~/.vim/plugged/youcompleteme
+python3 install.py --all
