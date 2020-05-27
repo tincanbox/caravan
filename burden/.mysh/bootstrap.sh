@@ -41,8 +41,14 @@ mysh_bootstrap(){
 
   source ~/.mysh/alias.sh
 
-  echo "Updating VIM plugins..."
-  eval "vim +PlugUpdate +qall"
+  if [ ! -e ~/.vim/plugged ]; then
+    echo "Installing VIM plugins..."
+    eval "vim +PlugUpdate +qall"
+    if [ -e ~/.vim/plugged/youcompleteme/install.py ]; then
+      eval "python3 ~/.vim/plugged/youcompleteme/install.py --all"
+    fi
+  fi
+
 }
 mysh_bootstrap
 
