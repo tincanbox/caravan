@@ -9,3 +9,4 @@ fi
 # YCM
 cd ~/.vim/plugged/youcompleteme
 python3 install.py --all
+cd ~
