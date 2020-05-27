@@ -4,7 +4,7 @@ __caravan::command::init()
 
   __caravan::log "$_CARAVAN_DIR_BURDEN"
   __caravan::log "Linking components..."
-  for linking_component in ".mysh" ".vim" ".vimrc" ".bashrc" ".zshrc" ".colorrc" ".eslintrc.json" "tsconfig.json"
+  for linking_component in ".mysh" ".vim" ".vimrc" ".bashrc" ".zshrc" ".zpreztorc" ".colorrc" ".eslintrc.json" "tsconfig.json"
   do
     linking_path="$_CARAVAN_DIR_BURDEN""/""$linking_component"
     linking_dest_path="$HOME""/""$linking_component"
