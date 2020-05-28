@@ -15,5 +15,6 @@
 !/task/
 
 # Excludes
+/burden/.vim/init.vim
 /burden/.vim/plugged/
 /burden/.vim/log/

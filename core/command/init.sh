@@ -36,6 +36,6 @@ __caravan::command::init()
   fi
 
   $(ln -s "$_CARAVAN_DIR_BURDEN""/.vim" "$user_home_path"".config/nvim")
-  $(cat "$_CARAVAN_DIR_BURDEN""/.vimrc" > "$user_home_path"".config/nvim/init.vim")
+  $(ln -s "$_CARAVAN_DIR_BURDEN""/.vimrc" > "$user_home_path"".config/nvim/init.vim")
 
 }
