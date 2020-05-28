@@ -75,7 +75,8 @@
 "</encoding>
 "
 "<theme>
-  colorscheme my_jellybeans
+  autocmd vimenter * colorscheme gruvbox
+  set t_Co=256
   " Override base bg colors
   hi Normal ctermbg=none
   "hi NonText guibg=none ctermbg=none
