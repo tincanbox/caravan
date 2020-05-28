@@ -16,8 +16,6 @@ call plug#begin('~/.vim/plugged')
 " Thanks to all Vim scripters
 "
 
-"---------------------------------------------- Main Theme
-Plug 'morhetz/gruvbox'
 "---------------------------------------------- Visible ANSI colorings.
 Plug 'vim-scripts/AnsiEsc.vim'
 "---------------------------------------------- Fugtive (Enable Git commands)
