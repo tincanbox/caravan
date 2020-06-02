@@ -75,15 +75,14 @@
 "</encoding>
 "
 "<theme>
-  colorscheme jellybeans
-  "autocmd vimenter * colorscheme gruvbox
+  autocmd vimenter * colorscheme molokai
+  "set t_Co=256
   " Override base bg colors
-  hi Normal ctermbg=none
-  "hi NonText guibg=none ctermbg=none
+  "hi Normal ctermbg=none
   " listchars color
-  hi SpecialKey ctermfg=8
+  "hi SpecialKey ctermfg=8
   " ColorScheme
-  syn match specialComment #\s+\* @.*# | hi specialComment ctermfg=red guifg=red
+  "syn match specialComment #\s+\* @.*# | hi specialComment ctermfg=red guifg=red
 "</theme>
 
 "<font>

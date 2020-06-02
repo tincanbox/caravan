@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
 
 "---------------------------------------------- Theme
 Plug 'morhetz/gruvbox'
-Plugin 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 "---------------------------------------------- Visible ANSI colorings.
 Plug 'vim-scripts/AnsiEsc.vim'
 "---------------------------------------------- Fugtive (Enable Git commands)
