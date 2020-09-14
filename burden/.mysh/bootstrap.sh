@@ -26,6 +26,10 @@ else
   exit 1
 fi
 
+if [ ! -e "$HOME/.mysh/extension" ]; then
+  mkdir "$HOME/.mysh/extension"
+fi
+
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH="$HOME/.mysh/bin":$PATH
 export VISUAL=vim
@@ -47,6 +51,12 @@ mysh_bootstrap(){
     eval "vim +PlugUpdate +qall"
     eval "python3 ~/.vim/plugged/youcompleteme/install.py --all"
   fi
+
+  echo "Loading User extension files."
+  for f in ~/.mysh/extension/*;
+  do
+    source "${f}"
+  done
 
 }
 mysh_bootstrap

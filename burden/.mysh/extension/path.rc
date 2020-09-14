@@ -1,0 +1,2 @@
+# PHP CodeSniffer from composer.
+export PATH="$HOME/.config/composer/vendor/bin":$PATH

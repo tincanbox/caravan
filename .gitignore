@@ -19,5 +19,4 @@
 /burden/.vim/plugged/
 /burden/.vim/log/
 /burden/.mysh/autoload/*
-!/burden/.mysh/autoload/.gitignore
-!/burden/.mysh/autoload/README
+
