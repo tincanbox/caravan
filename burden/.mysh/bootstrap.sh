@@ -19,8 +19,8 @@ fi
 
 echo "Using Shell: ""$current_shell"
 
-if [ -f "$HOME/.mysh/shell/$current_shell.sh" ]; then
-  source "$HOME/.mysh/shell/$current_shell.sh"
+if [ -f "$HOME/.mysh/setup/shell/$current_shell.sh" ]; then
+  source "$HOME/.mysh/setup/shell/$current_shell.sh"
 else
   echo ".mysh cant handle shell:""$current_shell"
   exit 1
@@ -32,14 +32,14 @@ export VISUAL=vim
 
 mysh_bootstrap(){
 
-  echo "Loading .mysh/vendor files."
+  echo "Loading .mysh/setup/vendor files."
 
-  for f in ~/.mysh/vendor/*;
+  for f in ~/.mysh/setup/vendor/*;
   do
     source "${f}"
   done
 
-  source ~/.mysh/alias.sh
+  source ~/.mysh/setup/common/setup_alias.sh
 
   # Checks vim plugins
   if [ ! -d ~/.vim/plugged ]; then

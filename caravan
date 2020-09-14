@@ -8,12 +8,13 @@ echo '
   \___/\_/|_/   |_/\_/|_/ \/  \_/|_/  |  |_/
 '
 
-_CARAVAN_HOME=$(dirname $(readlink -f "$0"))
+_CARAVAN_HOME=$(pwd)
 _CARAVAN_DIR_BURDEN="$_CARAVAN_HOME""/burden"
 _CARAVAN_DIR_COMMAND=$_CARAVAN_HOME"/core/command"
 _CARAVAN_COMMAND_PREFIX="__caravan::"
 
 echo "Using shell = ""$SHELL"
+echo "Working Dir = ""$_CARAVAN_HOME"
 source "$_CARAVAN_HOME""/core/init.sh"
 
 echo "Approaching members..."
