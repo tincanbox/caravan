@@ -1,0 +1,181 @@
+#!/bin/bash
+set -u
+
+#
+# Makes diff-patch file between target_01 branch and target_02 branch,
+# And applies the patch.
+#
+
+# $1 === Base Branch
+# $2 === Target Branch
+
+PATCH_DIR="./patch"
+
+base="$1"
+dest="$2"
+saving_file_name=$(echo "$dest" | sed -e "s/\//--/g")
+saving_file_path="$PATCH_DIR""/""$saving_file_name"".patch"
+
+function log() {
+    type=${1:-"progress"}
+    message="$2"
+    depth=${3:-0}
+    caret=${4:-"> "}
+
+    case "$type" in
+        "progress")
+            message="$caret""$message"
+        ;;
+        "error")
+            message="ERROR: ""$message"
+        ;;
+    esac
+
+    i=0
+    while [ $i -lt $depth ];
+        do
+            echo -n "  "
+            i=$(($i + 1))
+        done
+
+    echo "$message"
+    sleep 0.1
+}
+
+# Automatically fill the target.
+if [ "$dest" = "" ]; then
+    dest="HEAD"
+fi
+
+# diff feature/jasmine-core fix/history_index_page_form_fix
+echo ""
+echo "----------------------------------------"
+echo "Patching diffs between below"
+echo "Base    ""$base"
+echo "Dest    ""$dest"
+echo "----------------------------------------"
+sleep 2
+
+##
+# Fixing Revision
+##
+
+range=( $base $dest )
+
+log "progress" "Validating branches..."
+
+for target in ${range[@]}
+    do 
+        log "progress" "Resolving Branch... ""$target" 1
+
+        log "progress" "Checking remote BRANCH..." 2
+        git ls-remote --exit-code --heads origin $target
+
+        # If the branch exits in remote, fetchs it.
+        if test $? == 0; then
+            is_remote_branch=1
+        else
+            is_remote_branch=0
+        fi
+
+        if [[ $is_remote_branch == 1 ]]; then
+            log "progress" "Resolving BRANCH:""$target" 2
+            log "progress" "Fetching from remote..." 2
+            git fetch origin $target:$target
+        fi
+
+        revision=$(git rev-parse --verify $target)
+
+        if [[ $? != 0 ]]; then
+            log "progress" "Not synced yet... ""$target" 2
+            is_synced=0
+        else
+            is_synced=1
+        fi
+
+        if [[ $is_synced == 0 ]]; then
+            git fetch origin $target
+
+            if [[ $? != 0 ]]; then
+                log "error" "FETCH_FAILURE" 2
+                exit 2
+            fi
+
+            # Re-get revision value.
+            revision=$(git rev-parse --verify $target)
+        fi
+
+        if [[ $revision == $target ]]; then
+            is_commit=1
+        else
+            is_commit=0
+        fi
+
+        if [[ $is_commit == 1 ]]; then
+            log "progress" "Resolving COMMIT: ""$target" 2
+            log "progress" "Fetching a commit as branch..." 2
+            git fetch origin $target:"commit-""$target"
+        fi
+
+    done
+
+
+##
+# Finding Commit
+##
+
+log "progress" "Retrieving diffs between provided branches..."
+
+base_commit=$(git rev-parse --verify $base)
+dest_commit=$(git rev-parse --verify $dest)
+
+
+if [[ $? != 0 ]] || [[ "$base_commit" == "" ]]; then
+    log "error" "BASE_BRANCH_COMMIT_NOT_FOUND"
+    exit 2
+else
+    log "progress" "Base commit is ""$base_commit"
+fi
+
+if [[ $? != 0 ]] || [[ "$dest_commit" == "" ]]; then
+    log "error" "TARGET_BRANCH_COMMIT_NOT_FOUND"
+    exit 2
+else
+    log "progress" "Target commit is ""$dest_commit"
+fi
+
+echo ""
+echo "----------------------------------------"
+echo "Base            ""$base"
+echo "Target          ""$dest"
+echo "Saving patch    ""$saving_file_path"
+echo "----------------------------------------"
+sleep 2
+
+
+##
+# Patching
+##
+
+
+diff_command="git format-patch --stdout $base_commit..$dest_commit"
+log "progress" "Executing: ""$diff_command"
+
+# diff=$(git diff $base_branch...$target_branch)
+diff=$($diff_command)
+
+if test $? != 0; then
+    log "error" "GIT_DIFF_FAILURE_ERROR"
+    exit $?
+fi
+
+log "progress" "Saving a patch file..."
+
+mkdir -p "$PATCH_DIR"
+echo "$diff" >| "$saving_file_path"
+
+log "progress" "Patch File Created"
+log "progress" "$saving_file_path" 1 "--> "
+
+log "progress" "Patching..."
+git am -s -3 --whitespace=fix "$saving_file_path"
