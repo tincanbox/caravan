@@ -1,6 +1,6 @@
 {
   "name": "caravan-cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Caravan CLI",
   "keywords": [
     "oclif"
@@ -30,14 +30,12 @@
     "prepare": "yarn build",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "yarn lint",
-    "version": "oclif readme && git add README.md"
+    "version": "oclif readme && git add README.md",
+    "push": "yarn build && yarn version && git add . && git push origin HEAD"
   },
   "oclif": {
     "bin": "caravan",
-    "commands": {
-      "strategy": "single",
-      "target": "dist/index.js"
-    },
+    "commands": "./dist/commands",
     "dirname": "caravan",
     "plugins": [
       "@oclif/plugin-help",
@@ -45,8 +43,8 @@
     ],
     "topicSeparator": " ",
     "topics": {
-      "hello": {
-        "description": "Say hello to the world and others"
+      "wip": {
+        "description": ""
       }
     }
   },

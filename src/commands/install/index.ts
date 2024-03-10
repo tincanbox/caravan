@@ -1,11 +1,12 @@
 import {Args, Command, Flags} from '@oclif/core'
+import { spawn } from 'child_process';
 
 export default class Install extends Command {
   static args = {
-    person: Args.string({description: 'Person to say hello to', required: true}),
+    person: Args.string({description: 'WIP', required: true}),
   }
 
-  static description = 'Say hello'
+  static description = 'Install'
 
   static examples = [
   ]
@@ -17,6 +18,9 @@ export default class Install extends Command {
   async run(): Promise<void> {
     const {args, flags} = await this.parse(Install)
 
-    this.log(`hello ${args.person} from ${flags.from}! (./src/commands/hello/index.ts)`)
+    const ls = spawn('ls', ['-la'])
+    ls.stdout.on('data', function (data) {
+        console.log(data)
+    })
   }
 }

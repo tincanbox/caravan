@@ -23,16 +23,6 @@
   "rules": {
   },
   "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly",
-
-    "process": true,
-    "__dirname": true,
-    "define": true,
-    "require": true,
-    "jQuery": true,
-    "FM": true,
-    "$": true,
-    "_": true
+    "Atomics": "readonly"
   }
 }

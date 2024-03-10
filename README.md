@@ -18,7 +18,7 @@ $ npm install -g caravan-cli
 $ caravan COMMAND
 running command...
 $ caravan (--version)
-caravan-cli/0.0.0 darwin-arm64 node-v21.6.2
+caravan-cli/0.0.1 darwin-arm64 node-v21.6.2
 $ caravan --help [COMMAND]
 USAGE
   $ caravan COMMAND
@@ -27,9 +27,8 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`caravan hello PERSON`](#caravan-hello-person)
-* [`caravan hello world`](#caravan-hello-world)
 * [`caravan help [COMMAND]`](#caravan-help-command)
+* [`caravan install PERSON`](#caravan-install-person)
 * [`caravan plugins`](#caravan-plugins)
 * [`caravan plugins:install PLUGIN...`](#caravan-pluginsinstall-plugin)
 * [`caravan plugins:inspect PLUGIN...`](#caravan-pluginsinspect-plugin)
@@ -40,48 +39,6 @@ USAGE
 * [`caravan plugins:uninstall PLUGIN...`](#caravan-pluginsuninstall-plugin-1)
 * [`caravan plugins:uninstall PLUGIN...`](#caravan-pluginsuninstall-plugin-2)
 * [`caravan plugins update`](#caravan-plugins-update)
-
-## `caravan hello PERSON`
-
-Say hello
-
-```
-USAGE
-  $ caravan hello PERSON -f <value>
-
-ARGUMENTS
-  PERSON  Person to say hello to
-
-FLAGS
-  -f, --from=<value>  (required) Who is saying hello
-
-DESCRIPTION
-  Say hello
-
-EXAMPLES
-  $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
-```
-
-_See code: [src/commands/hello/index.ts](https://github.com/tincanbox/caravan-cli/blob/v0.0.0/src/commands/hello/index.ts)_
-
-## `caravan hello world`
-
-Say hello world
-
-```
-USAGE
-  $ caravan hello world
-
-DESCRIPTION
-  Say hello world
-
-EXAMPLES
-  $ caravan hello world
-  hello world! (./src/commands/hello/world.ts)
-```
-
-_See code: [src/commands/hello/world.ts](https://github.com/tincanbox/caravan-cli/blob/v0.0.0/src/commands/hello/world.ts)_
 
 ## `caravan help [COMMAND]`
 
@@ -102,6 +59,23 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.0.17/src/commands/help.ts)_
+
+## `caravan install PERSON`
+
+Install
+
+```
+USAGE
+  $ caravan install PERSON
+
+ARGUMENTS
+  PERSON  WIP
+
+DESCRIPTION
+  Install
+```
+
+_See code: [src/commands/install/index.ts](https://github.com/tincanbox/caravan-cli/blob/v0.0.1/src/commands/install/index.ts)_
 
 ## `caravan plugins`
 

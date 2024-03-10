@@ -1,0 +1,5 @@
+services:
+  space:
+    build: .
+    ports:
+      - "8000:5000"
