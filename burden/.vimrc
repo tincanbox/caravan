@@ -243,8 +243,6 @@
   command -nargs=* EO call s:ExecuteCommandAndRedirectToQuickfix(<f-args>)
   " Bye. Maybe you can hit "qa" 1.5x faster than this. Just I want this.
   command -nargs=0 Bye :qa
-  " Delete a current file
-  command -complete=file -nargs=0 Remove :echo 'Remove: ' . '<f-args>'.' '.(delete(expand('%')) == 0 ? 'Succeeded :)' : 'Failure X(' )
   " Allow saving of files as sudo when I forgot to start vim using sudo.
   cmap w!! w !sudo tee > /dev/null %
 "</command>

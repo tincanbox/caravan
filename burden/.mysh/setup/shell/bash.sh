@@ -1,3 +1,3 @@
-echo "---- Shell:ZSH"
+echo "---- Shell:BASH"
 
 echo "  ...but nothing to do."

@@ -1,8 +1,10 @@
+#!/bin/sh
 echo "---- Shell:ZSH"
 
-if [ ! -e "$HOME"/.zprezto ]
+if [ ! -d "$HOME"/.zprezto ]
 then
-  __caravan::log "Installing Prezto..."
+  echo "  Installing Prezto..."
+  ls -la
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
   setopt EXTENDED_GLOB
   for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
@@ -14,6 +16,6 @@ if [ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]
 then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 else
-  __caravan::log "Theres no .zprezto/init.zsh file."
+  echo "  Theres no .zprezto/init.zsh file."
 fi
 

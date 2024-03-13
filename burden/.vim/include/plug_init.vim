@@ -61,7 +61,9 @@ Plug 'Shougo/vimproc'
 Plug 'Shougo/vimshell'
 Plug 'Shougo/unite.vim'
 "---------------------------
-Plug 'valloric/youcompleteme'
+" Plug 'valloric/youcompleteme'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "else

@@ -72,17 +72,11 @@ mysh_bootstrap(){
   done
 
 
-  # Checks vim plugins
-  if [ ! -d ~/.vim/plugged ]; then
-    echo "Installing VIM plugins..."
-    eval "vim +PlugUpdate +qall"
-    eval "python3 ~/.vim/plugged/youcompleteme/install.py --all"
-  fi
-
   touch ~/.shrc.local
-
 }
+
+
+# Runs bootstrap
 mysh_bootstrap
 
 export XDG_CONFIG_HOME=~/.config
-

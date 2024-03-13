@@ -1,13 +1,16 @@
 {
-  "name": "caravan-cli",
+  "name": "caravan",
   "version": "0.0.1",
-  "description": "Caravan CLI",
+  "description": "Caravan",
   "keywords": [
-    "oclif"
   ],
-  "homepage": "https://github.com/tincanbox/caravan-cli",
-  "bugs": "https://github.com/tincanbox/caravan-cli/issues",
-  "repository": "tincanbox/caravan-cli",
+  "private": true,
+  "workspaces": [
+    "caravan-cli"
+  ],
+  "homepage": "https://github.com/tincanbox/caravan",
+  "bugs": "https://github.com/tincanbox/caravan/issues",
+  "repository": "tincanbox/caravan",
   "license": "MIT",
   "author": "",
   "type": "module",
@@ -15,60 +18,15 @@
   "main": "",
   "types": "dist/index.d.ts",
   "bin": {
-    "caravan": "./bin/run.js"
+    "caravan": "./console/bin/run.js"
   },
   "files": [
-    "/bin",
-    "/dist",
-    "/oclif.manifest.json"
   ],
   "scripts": {
-    "build": "shx rm -rf dist && tsc -b",
-    "lint": "eslint . --ext .ts",
-    "prepack": "yarn build && oclif manifest && oclif readme",
-    "postpack": "shx rm -f oclif.manifest.json",
-    "prepare": "yarn build",
-    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
-    "posttest": "yarn lint",
-    "version": "oclif readme && git add README.md",
-    "push": "yarn build && yarn version && git add . && git push origin HEAD"
-  },
-  "oclif": {
-    "bin": "caravan",
-    "commands": "./dist/commands",
-    "dirname": "caravan",
-    "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
-    ],
-    "topicSeparator": " ",
-    "topics": {
-      "wip": {
-        "description": ""
-      }
-    }
   },
   "dependencies": {
-    "@oclif/core": "^3",
-    "@oclif/plugin-help": "^6",
-    "@oclif/plugin-plugins": "^4"
   },
   "devDependencies": {
-    "@oclif/prettier-config": "^0.2.1",
-    "@oclif/test": "^3",
-    "@types/chai": "^4",
-    "@types/mocha": "^10",
-    "@types/node": "^18",
-    "chai": "^4",
-    "eslint": "^8",
-    "eslint-config-oclif": "^5",
-    "eslint-config-oclif-typescript": "^3",
-    "eslint-config-prettier": "^9.1.0",
-    "mocha": "^10",
-    "oclif": "^4.4.19",
-    "shx": "^0.3.4",
-    "ts-node": "^10.9.2",
-    "typescript": "^5"
   },
   "engines": {
     "node": ">=18.0.0"

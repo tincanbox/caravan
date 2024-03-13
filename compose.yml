@@ -1,0 +1,7 @@
+services:
+  space:
+    build: .
+    platform: linux/arm64
+    tty: true
+    volumes:
+      - ./.door:/home/dev/door
