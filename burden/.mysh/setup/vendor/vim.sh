@@ -1,5 +1,5 @@
 
-echo "---- Tool::VIM"
+echo "---- Vim"
 
 if type "nvim" 2>&1 1>/dev/null; then
   echo "Loading nvim config"

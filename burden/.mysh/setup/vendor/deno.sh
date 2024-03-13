@@ -1,2 +1,4 @@
-export DENO_INSTALL="$HOME/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+echo "---- Deno"
+
+# export DENO_INSTALL="/root/.deno"
+export PATH="/root/.deno/bin:$PATH"

@@ -124,7 +124,7 @@ ENV SHELL /usr/bin/zsh
 ENV USER debris
 ENV HOME /home/$USER
 
-# user/pass
+# Adapting credential
 RUN useradd -m $USER
 RUN gpasswd -a $USER sudo
 RUN gpasswd -a $USER root

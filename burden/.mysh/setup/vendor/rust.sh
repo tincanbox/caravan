@@ -1,2 +1,4 @@
+echo "---- Rust"
 
-. "$HOME/.cargo/env"
+export PATH="/root/.cargo/bin:$PATH"
+. "/root/.cargo/env"

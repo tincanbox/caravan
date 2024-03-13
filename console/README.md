@@ -7,26 +7,7 @@ Caravan
 * [Commands](#commands)
 <!-- tocstop -->
 
-# Overview
-
-## Tools
-
-### vim
-
-## Languages
-
-### Deno
-
-### NodeJS
-
-### Python
-
-### Rust
-
-### Haskell
-
-
-# Command
+# Usage
 <!-- usage -->
 ```sh-session
 $ npm install -g caravan-cli
