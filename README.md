@@ -6,12 +6,27 @@
 ## Overview
 
 
+## Installation
+
+That's it.
+
+```shell
+# Will do everything and enters into your space. Will take 10-20 mins.
+yarn space
+
+# Will do only build.
+yarn build
+```
 
 
 ## Tools
 
 ### vim
 
+```shell
+# Just... When you call vim first time, vim will install all plugins.
+vim
+```
 
 
 
@@ -19,11 +34,39 @@
 
 ### Deno
 
+Version: latest
+
+```shell
+# Just...
+deno
+```
+
 ### NodeJS
+
+Version: latest
+
+```shell
+# Just...
+node
+```
 
 ### Python
 
+Version: latest
+
+```shell
+# Just
+python
+```
+
 ### Rust
+
+Version: latest
+
+```shell
+# Just...
+rustc YOUR_FILE
+```
 
 ### Haskell Stack
 
