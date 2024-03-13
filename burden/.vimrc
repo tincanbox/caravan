@@ -50,6 +50,7 @@
 "<edit>
   set magic
   set number
+  set modifiable
   set history=100
   set formatoptions=lmoq
   set helplang=en

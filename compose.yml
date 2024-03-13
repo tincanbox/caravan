@@ -4,4 +4,4 @@ services:
     platform: linux/arm64
     tty: true
     volumes:
-      - ./.door:/home/dev/door
+      - ./.blackhole:/home/debris/blackhole

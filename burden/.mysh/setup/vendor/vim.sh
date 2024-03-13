@@ -8,9 +8,3 @@ if type "nvim" 2>&1 1>/dev/null; then
   export NVIM_PYTHON_LOG_FILE="$HOME/.vim/log/pylog"
   export NVIM_PYTHON_LOG_LEVEL=DEBUG
 fi
-
-  # Checks vim plugins
-  if [ ! -d ~/.vim/plugged ]; then
-    echo "Installing VIM plugins..."
-    eval "vim +PlugUpdate +qall"
-  fi

@@ -1,4 +1,12 @@
-# Ubuntu公式リポジトリよりイメージを取得
+
+# ______           _              __ _ _      
+# |  _  \         | |            / _(_) |     
+# | | | |___   ___| | _____ _ __| |_ _| | ___ 
+# | | | / _ \ / __| |/ / _ \ '__|  _| | |/ _ \
+# | |/ / (_) | (__|   <  __/ |  | | | | |  __/
+# |___/ \___/ \___|_|\_\___|_|  |_| |_|_|\___|
+
+
 FROM amd64/ubuntu:latest AS core
 
 ENV PATH /usr/local/bin:$PATH
@@ -29,7 +37,15 @@ RUN apt-get update \
 
 
 
-FROM core AS workspace
+#  _    _            _    _                     _     
+# | |  | |          | |  | |                   | |    
+# | |  | | ___  _ __| | _| |__   ___ _ __   ___| |__  
+# | |/\| |/ _ \| '__| |/ / '_ \ / _ \ '_ \ / __| '_ \ 
+# \  /\  / (_) | |  |   <| |_) |  __/ | | | (__| | | |
+#  \/  \/ \___/|_|  |_|\_\_.__/ \___|_| |_|\___|_| |_|
+
+
+FROM core AS workbench
 
 RUN apt-get update && apt upgrade -y
 
@@ -39,10 +55,6 @@ RUN apt-get update \
     zsh
 
 # Languages - Nodejs
-# RUN apt-get update \
-#   && apt-get install -y \
-#     nodejs npm
-
 RUN curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
 RUN npm install -g npm \
   && npm install -g n \
@@ -54,24 +66,40 @@ RUN apt-get update \
   && apt-get install -y \
     python-is-python3 pip
 
+# Languages - Deno
+RUN curl -fsSL https://deno.land/install.sh | sh
+
+# Languages - Rust
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+
 # Languages - Haskell Stack
 RUN curl -sSL https://get.haskellstack.org/ | sh
 
 # Tools
 RUN apt-get update \
   && apt-get install -y \
-    git
+    git vi nano
 
 # Tools - nvim
 RUN git clone https://github.com/neovim/neovim
 RUN cd neovim \
     && make CMAKE_BUILD_TYPE=Release \
     && make install
-  
 
 
 
-FROM workspace
+
+#  _____                      
+# /  ___|                     
+# \ `--. _ __   __ _  ___ ___ 
+#  `--. \ '_ \ / _` |/ __/ _ \
+# /\__/ / |_) | (_| | (_|  __/
+# \____/| .__/ \__,_|\___\___|
+#       | |                   
+#       |_|                   
+
+
+FROM workbench AS space
 
 ##
 # Locale
@@ -87,27 +115,28 @@ ENV LANGUAGE en_US.en
 
 RUN zsh
 ENV SHELL /usr/bin/zsh
-RUN sed -i.bak "s|$HOME:|$HOME:$SHELL|" /etc/passwd
 
 
 ##
 # User
 ## 
 
-ENV USER dev
+ENV USER debris
 ENV HOME /home/$USER
 
 # user/pass
 RUN useradd -m $USER
 RUN gpasswd -a $USER sudo
+RUN gpasswd -a $USER root
 RUN echo "$USER:$USER" | chpasswd
-
+RUN chmod g+rwx /root
+RUN chmod g+rwx $HOME/.cache
 
 ##
 # Workspace
 ##
 USER $USER
 WORKDIR $HOME
-COPY --chmod=0755 --chown=dev burden/ .
+COPY --chmod=0755 --chown=$USER burden/ .
 
 CMD [ "sh", "-c", "$SHELL" ]

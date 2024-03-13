@@ -1,5 +1,5 @@
 {
-  "name": "caravan-cli",
+  "name": "console",
   "version": "0.0.1",
   "description": "Caravan CLI",
   "keywords": [
@@ -25,7 +25,7 @@
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
     "lint": "eslint . --ext .ts",
-    "prepack": "yarn build && oclif manifest && oclif readme",
+    "dist": "yarn build && oclif manifest && oclif readme",
     "postpack": "shx rm -f oclif.manifest.json",
     "prepare": "yarn build",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
